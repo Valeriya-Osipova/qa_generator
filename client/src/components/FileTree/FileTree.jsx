@@ -1,7 +1,7 @@
 import styles from './FileTree.module.css'
 import Folders from "./Folders/Folders";
 import explorer from "./folderData";
-import {GET} from "../../api/archive/route";
+// import {GET} from "../../api/archive/route";
 const FileTree = () =>{
     return(
         <div className={styles.container}>
