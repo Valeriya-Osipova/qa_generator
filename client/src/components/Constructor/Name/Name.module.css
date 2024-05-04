@@ -1,0 +1,27 @@
+.container{
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.name{
+    margin-right: 15px;
+    font-size: 20px;
+}
+
+.container input{
+    width: 100%;
+    padding: 2px 5px;
+    border:0;
+    border-bottom: 1px solid black;
+    color: black;
+    font-family: inherit;
+    font-size: 20px;
+}
+
+.container input:focus {
+    background-color: #fff;
+    border-color: #bdbdbd;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(158, 158, 158, 0.25);
+}
