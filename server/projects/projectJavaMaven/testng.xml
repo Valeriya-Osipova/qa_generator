@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Tests">
+    <test name="Тест первый">
+        <classes>
+            <class name="org.example.tests.Test_1"/>
+        </classes>
+    </test>
+
+    <test name="Тест второй с параметром">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="org.example.patterns.ParallelPattern"/>
+        </classes>
+    </test>
+</suite>
+
+
+
+
