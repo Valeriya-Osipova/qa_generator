@@ -1,3 +1,4 @@
+
 .header{
     background-color: #898989;
     height: 60px;
@@ -17,4 +18,5 @@
 .container{
     display: flex;
     margin: 0 20px;
+    height: calc(100vh - 60px);
 }

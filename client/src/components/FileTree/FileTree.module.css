@@ -2,7 +2,17 @@
     flex-basis: 33.33%;
     border-right: solid 1px rgba(0,0,0, 0.25);
     box-shadow: 1px 0 rgba(0,0,0, 0.25);
-    min-height:100%;
+}
+
+.button_container{
+    text-align: center;
+}
+
+.fileForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: calc(100% - 30px);
 }
 
 .subHeader{

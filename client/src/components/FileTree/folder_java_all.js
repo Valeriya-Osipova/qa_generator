@@ -68,6 +68,11 @@ const explorer = {
                           isFolder: true,
                           items: [
                             {
+                              name: "LoginPage.java",
+                              isFolder: false,
+                              items: [],
+                            },
+                            {
                               name: "Main.java",
                               isFolder: false,
                               items: [],
@@ -77,7 +82,23 @@ const explorer = {
                         {
                           name: "patterns",
                           isFolder: true,
-                          items: [],
+                          items: [
+                            {
+                              name: "PagePrimitive.java",
+                              isFolder: false,
+                              items: [],
+                            },
+                            {
+                              name: "ParallelPattern.java",
+                              isFolder: false,
+                              items: [],
+                            },
+                            {
+                              name: "RandomData.java",
+                              isFolder: false,
+                              items: [],
+                            },
+                          ],
                         },
                       ],
                     },
@@ -99,12 +120,31 @@ const explorer = {
             {
               name: "java",
               isFolder: true,
-              items: [],
-            },
-            {
-              name: "test.java",
-              isFolder: false,
-              items: [],
+              items: [
+                {
+                  name: "org",
+                  isFolder: true,
+                  items: [
+                    {
+                      name: "example",
+                      isFolder: true,
+                      items: [
+                        {
+                          name: "tests",
+                          isFolder: true,
+                          items: [
+                            {
+                              name: "Test_file.java",
+                              isFolder: false,
+                              items: [],
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
             },
           ],
         },

@@ -5,9 +5,15 @@ import explorer from "./folderData";
 const FileTree = () =>{
     return(
         <div className={styles.container}>
-            <div className={styles.subHeader}>File tree</div>
-            <div className={styles.folders}><Folders explorer={explorer}/></div>
-            <button /*onClick={()=> GET()}*/>Download</button>
+            <div className={styles.fileForm}>
+                <div>
+                    <div className={styles.subHeader}>File tree</div>
+                    <div className={styles.folders}><Folders explorer={explorer}/></div>
+                </div>
+                <div className={styles.button_container}>
+                    <button /*onClick={()=> GET()}*/>Download</button>
+                </div>
+            </div>
         </div>
     )
 }
