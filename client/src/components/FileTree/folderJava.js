@@ -1,4 +1,4 @@
-const explorer = {
+const explorerJava = {
   name: "projectJavaMaven",
   isFolder: true,
   items: [
@@ -128,4 +128,4 @@ const explorer = {
   ],
 };
 
-export default explorer;
+export default explorerJava;
