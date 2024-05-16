@@ -6,6 +6,7 @@ import Name from "./Name/Name";
 import { dataLibrary } from "./LibraryPattern/libraryPatternData";
 import { dataPattern } from "./LibraryPattern/libraryPatternData";
 import LibraryPattern from "./LibraryPattern/LibraryPattern";
+import explorerJava from "../FileTree/folderJava";
 
 // const BASE_URL = "http://localhost:3030/files"
 const Constructor = () => {
@@ -20,6 +21,7 @@ const Constructor = () => {
   const [arrayLibP, setArrayLibP] = useState([]);
   const [arrayPatP, setArrayPatP] = useState([]);
   const [isLangChanged, setIsLangChanged] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const settings = {
     language: "",
@@ -28,17 +30,6 @@ const Constructor = () => {
     framework: "",
     libraries: [],
     patterns: [],
-  };
-
-  const makeRequest = () => {
-    fetch(
-      `http://localhost:3030/files?${
-        language.length > 0 ? `language=${language}` : ""
-      }`
-    )
-      .then((result) => result.json())
-      .then((data) => console.log(data))
-      .catch((e) => console.error(e));
   };
 
   const setLanguageFunction = (e) => {
@@ -103,14 +94,28 @@ const Constructor = () => {
       settings.libraries = arrayLibP;
       settings.patterns = arrayPatP;
     }
-
     console.log(settings);
+    setIsLoading(true);
+
+    fetch("http://localhost:3001/update-files", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(settings),
+    })
+      .then((result) => {
+        const explorer = result.json();
+        console.log(explorer);
+        setIsLoading(false);
+      })
+      .catch((e) => console.error(e));
   };
 
   return (
     <div className={styles.constructor}>
       <div className={styles.subHeader}>Constructor</div>
-      <form onSubmit={submitAction} className={styles.form}>
+      <form id="form" onSubmit={submitAction} className={styles.form}>
         <div>
           <div className={styles.choice}>
             <p className={styles.head}>Language of project</p>
@@ -193,8 +198,15 @@ const Constructor = () => {
           )}
         </div>
         <div className={styles.button_container}>
-          <button type="submit" /*onClick={makeRequest}*/>Generate</button>
+          <button type="submit">Generate</button>
         </div>
+        {isLoading ? (
+          <div className={styles.loader_container}>
+            <div className={styles.loader}></div>
+          </div>
+        ) : (
+          ""
+        )}
       </form>
     </div>
   );

@@ -15,7 +15,7 @@ export const dataLibrary = {
     {
       id: 3,
       name: "PostgreSQL",
-      description: "org.postgresql, version 42.7.3",
+      description: "org.postgresql, version 9.1-901.jdbc4",
       isSelected: false,
     },
     {
@@ -33,13 +33,13 @@ export const dataLibrary = {
     {
       id: 6,
       name: "Allure",
-      description: "io.qameta.allure, version 2.8",
+      description: "io.qameta.allure, version 2.27",
       isSelected: false,
     },
     {
       id: 7,
       name: "JdbcTemplate",
-      description: "org.springframework, version 6.1.6",
+      description: "jporm-jdbctemplate, version 5.3.0",
       isSelected: false,
     },
   ],

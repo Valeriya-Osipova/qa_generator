@@ -3,18 +3,47 @@ import Folders from "./Folders/Folders";
 import explorerJava from "./folderJava";
 import explorerPython from "./folderPython";
 // import {GET} from "../../api/archive/route";
-const FileTree = () => {
+const downloadFile = () => {
+  fetch("http://localhost:3001/download", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ language: "java", name: "MyProject" }),
+  })
+    .then((result) => {
+      if (result.ok) {
+        return result.blob();
+      }
+      throw new Error("Не удалось загрузить файл");
+    })
+    .then((blob) => {
+      // Создаем URL для Blob объекта
+      const url = window.URL.createObjectURL(blob);
+      // Создаем временный <a> элемент для скачивания файла
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "downloadedFile.zip"; // Имя файла для скачивания
+      document.body.appendChild(a); // Вставляем <a> в документ
+      a.click(); // Имитируем клик по ссылке для начала скачивания
+      window.URL.revokeObjectURL(url); // Освобождаем URL Blob объекта
+      a.remove();
+    })
+    .catch((e) => console.error(e));
+};
+
+const FileTree = (explorer) => {
   return (
     <div className={styles.container}>
       <div className={styles.fileForm}>
         <div>
           <div className={styles.subHeader}>File tree</div>
           <div className={styles.folders}>
-            <Folders explorer={explorerJava} />
+            <Folders explorer={explorer} />
           </div>
         </div>
         <div className={styles.button_container}>
-          <button /*onClick={()=> GET()}*/>Download</button>
+          <button onClick={downloadFile}>Download</button>
         </div>
       </div>
     </div>
