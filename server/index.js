@@ -6,9 +6,11 @@ const fs = require("fs-extra");
 const app = express();
 const PORT = 3001;
 
+let { pomStart } = require("./DataFiles/data");
+
 const {
   testngXml,
-  pomStart,
+  pomStartTestNG,
   pomEnd,
   testngPom,
   seleniumPom,
@@ -25,11 +27,6 @@ const {
 } = require("./DataFiles/data");
 
 const { zipDirectory } = require("./Controlls/zipControll");
-
-const {
-  explorerJava,
-  explorerPython,
-} = require("./DataFiles/projectStructure");
 
 const libraryTexts = {
   JdbcTemplate: jdbcTemplatePom,
@@ -69,10 +66,9 @@ app.post("/update-files", (req, res) => {
     if (framework !== "") {
       addFramework(framework);
     }
-    libraries.length ? addLibraries(libraries) : "";
     patterns.length ? addPatterns(patterns) : "";
+    libraries.length ? addLibraries(libraries) : "";
     res.status(200).send("Проект сформирован");
-    res.send(explorerJava);
   } else {
     res.status(400).send("Проекты для данного языка еще в разработке");
   }
@@ -94,10 +90,11 @@ const addFramework = (framework) => {
       if (err) throw err;
       console.log("Добавлен файл!");
     });
-    fs.writeFile(pathToPom, data, (err) => {
+    fs.writeFileSync(pathToPom, data, (err) => {
       if (err) throw err;
       console.log("Добавлен файл!");
     });
+    pomStart = pomStartTestNG;
   } else console.log("Фрейморк не поддерживается");
 };
 
@@ -113,7 +110,7 @@ const addLibraries = (libraries) => {
   ${libsContetn}
   ${pomEnd}`;
 
-  fs.writeFile(pathToPom, data, (err) => {
+  fs.writeFileSync(pathToPom, data, (err) => {
     if (err) throw err;
     console.log("Файл pom.xml обновлен");
   });
@@ -144,17 +141,17 @@ const addPatterns = (patterns) => {
     }
     if (pattern === "ParallelPattern") {
       addLibraries(["Selenium"]);
-      fs.writeFile(destinationParallel, ParallelPatternData, (err) => {
+      fs.writeFileSync(destinationParallel, ParallelPatternData, (err) => {
         if (err) throw err;
         console.log("Паттерн добавлен");
       });
-      fs.writeFile(pathToTestng, testngParallelPattern, (err) => {
+      fs.writeFileSync(pathToTestng, testngParallelPattern, (err) => {
         if (err) throw err;
         console.log("Testng обновлен");
       });
     }
     if (pattern === "RandomData") {
-      fs.writeFile(destinationRandom, RandomDataData, (err) => {
+      fs.writeFileSync(destinationRandom, RandomDataData, (err) => {
         if (err) throw err;
         console.log("Паттерн добавлен");
       });

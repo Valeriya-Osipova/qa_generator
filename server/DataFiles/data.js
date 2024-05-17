@@ -9,8 +9,7 @@ const testngXml = `<?xml version="1.0" encoding="UTF-8"?>
         </test>
     </suite>`;
 
-const pomStart = `
-<?xml version="1.0" encoding="UTF-8"?>
+let pomStart = `<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -27,6 +26,32 @@ const pomStart = `
     </properties>
 
     <dependencies>
+`;
+
+const pomStartTestNG = `<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>JavaMaven</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+ 
+    
+      <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>7.8.0</version>
+        </dependency>
 `;
 
 const pomEnd = `
@@ -457,6 +482,7 @@ const testngParallelPattern = `
 module.exports = {
   testngXml,
   pomStart,
+  pomStartTestNG,
   pomEnd,
   testngPom,
   seleniumPom,
